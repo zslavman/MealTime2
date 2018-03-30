@@ -16,7 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		84F273032067171800D34027 /* MealTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84F273032067171800D34027 /* MealTime2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealTime2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F273062067171800D34027 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F273082067171800D34027 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84F2730B2067171800D34027 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		84F273042067171800D34027 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84F273032067171800D34027 /* MealTime.app */,
+				84F273032067171800D34027 /* MealTime2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,9 +70,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		84F273022067171800D34027 /* MealTime */ = {
+		84F273022067171800D34027 /* MealTime2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84F273182067171900D34027 /* Build configuration list for PBXNativeTarget "MealTime" */;
+			buildConfigurationList = 84F273182067171900D34027 /* Build configuration list for PBXNativeTarget "MealTime2" */;
 			buildPhases = (
 				84F272FF2067171800D34027 /* Sources */,
 				84F273002067171800D34027 /* Frameworks */,
@@ -82,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = MealTime;
+			name = MealTime2;
 			productName = MealTime;
-			productReference = 84F273032067171800D34027 /* MealTime.app */;
+			productReference = 84F273032067171800D34027 /* MealTime2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -104,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 84F272FE2067171800D34027 /* Build configuration list for PBXProject "MealTime" */;
+			buildConfigurationList = 84F272FE2067171800D34027 /* Build configuration list for PBXProject "MealTime2" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -117,7 +117,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				84F273022067171800D34027 /* MealTime */,
+				84F273022067171800D34027 /* MealTime2 */,
 			);
 		};
 /* End PBXProject section */
@@ -266,7 +266,7 @@
 				DEVELOPMENT_TEAM = LC7P3687MC;
 				INFOPLIST_FILE = MealTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zslavman.MealTime;
+				PRODUCT_BUNDLE_IDENTIFIER = zslavman.MealTime2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -279,7 +279,7 @@
 				DEVELOPMENT_TEAM = LC7P3687MC;
 				INFOPLIST_FILE = MealTime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = zslavman.MealTime;
+				PRODUCT_BUNDLE_IDENTIFIER = zslavman.MealTime2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -288,7 +288,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84F272FE2067171800D34027 /* Build configuration list for PBXProject "MealTime" */ = {
+		84F272FE2067171800D34027 /* Build configuration list for PBXProject "MealTime2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84F273162067171900D34027 /* Debug */,
@@ -297,7 +297,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84F273182067171900D34027 /* Build configuration list for PBXNativeTarget "MealTime" */ = {
+		84F273182067171900D34027 /* Build configuration list for PBXNativeTarget "MealTime2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84F273192067171900D34027 /* Debug */,

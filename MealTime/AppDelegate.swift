@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navContr = window?.rootViewController as! UINavigationController
         let viewContr = navContr.topViewController as! ViewController
-        viewContr.conta = persistentContainer.viewContext
+        viewContr.context = persistentContainer.viewContext
         
         return true
     }

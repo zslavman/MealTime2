@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MealTime.xcodeproj">
+      location = "self:/Users/admin/Desktop/2018/02_X-Code/07_MealTime2/MealTime2.xcodeproj">
    </FileRef>
 </Workspace>

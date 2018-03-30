@@ -15,9 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var countTF: UILabel!
     
-    var conta:NSManagedObjectContext! // заряжается в классе AppDelegate
-    
-    lazy var context:NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var context:NSManagedObjectContext! // заряжается в классе AppDelegate
     
     var instances: [Happydate] = [] // массив экземпляров Happydate из Core Data
     
