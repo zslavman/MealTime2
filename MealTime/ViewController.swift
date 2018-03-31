@@ -16,7 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var countTF: UILabel!
     @IBOutlet weak var deleteBttn: UIButton!
     
-    var context:NSManagedObjectContext! // заряжается в классе AppDelegate
+    lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var person:Person! // персона, к которой будут применены операции с приемом пищи, по сути, это и есть массив, в котором будут храниться все приемы пищи (экземпляры Meals)
     var personName = "Max"
@@ -77,7 +77,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Время когда я ел вкусняшки"
+        return "Время когда \(personName) ел вкусняшки:"
     }
     
     

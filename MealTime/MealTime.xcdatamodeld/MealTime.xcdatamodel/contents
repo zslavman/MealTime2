@@ -5,11 +5,12 @@
         <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="meals" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName=".Person" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Meal" inverseName="person" inverseEntity="Meal" syncable="YES"/>
     </entity>
     <elements>
         <element name="Meal" positionX="36" positionY="-189" width="128" height="73"/>
-        <element name="Person" positionX="-171" positionY="-189" width="128" height="73"/>
+        <element name="Person" positionX="-191" positionY="-216" width="128" height="90"/>
     </elements>
 </model>

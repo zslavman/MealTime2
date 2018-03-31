@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56565B9E20701623008CB1AC /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56565B9D20701623008CB1AC /* MainScreen.swift */; };
+		56565BA2207038E3008CB1AC /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56565BA1207038E2008CB1AC /* GradientView.swift */; };
 		84F273072067171800D34027 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F273062067171800D34027 /* AppDelegate.swift */; };
 		84F273092067171800D34027 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F273082067171800D34027 /* ViewController.swift */; };
 		84F2730C2067171800D34027 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F2730A2067171800D34027 /* Main.storyboard */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		56565B9D20701623008CB1AC /* MainScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		56565B9F20702EEA008CB1AC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		56565BA020702EEB008CB1AC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		56565BA1207038E2008CB1AC /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		84F273032067171800D34027 /* MealTime2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealTime2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F273062067171800D34027 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F273082067171800D34027 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,11 +63,13 @@
 			isa = PBXGroup;
 			children = (
 				84F273062067171800D34027 /* AppDelegate.swift */,
+				56565B9D20701623008CB1AC /* MainScreen.swift */,
 				84F273082067171800D34027 /* ViewController.swift */,
 				84F2730A2067171800D34027 /* Main.storyboard */,
 				84F273102067171900D34027 /* Assets.xcassets */,
 				84F273122067171900D34027 /* LaunchScreen.storyboard */,
 				84F273152067171900D34027 /* Info.plist */,
+				56565BA1207038E2008CB1AC /* GradientView.swift */,
 				84F2730D2067171900D34027 /* MealTime.xcdatamodeld */,
 			);
 			path = MealTime;
@@ -140,7 +148,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56565B9E20701623008CB1AC /* MainScreen.swift in Sources */,
 				84F2730F2067171900D34027 /* MealTime.xcdatamodeld in Sources */,
+				56565BA2207038E3008CB1AC /* GradientView.swift in Sources */,
 				84F273092067171800D34027 /* ViewController.swift in Sources */,
 				84F273072067171800D34027 /* AppDelegate.swift in Sources */,
 			);
@@ -153,6 +163,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				84F2730B2067171800D34027 /* Base */,
+				56565B9F20702EEA008CB1AC /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -161,6 +172,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				84F273132067171900D34027 /* Base */,
+				56565BA020702EEB008CB1AC /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -172,6 +184,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -221,6 +234,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
