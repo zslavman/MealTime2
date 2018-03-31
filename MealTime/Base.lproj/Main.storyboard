@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Время поесть-->
+        <!--[Имя]-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MealTime" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MealTime2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -38,8 +38,8 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="5Eo-t6-LAH"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="qEb-Pq-BVh">
-                                <rect key="frame" x="248" y="115" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="qEb-Pq-BVh">
+                                <rect key="frame" x="26" y="123" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="VKx-7a-3GU"/>
                                     <constraint firstAttribute="width" constant="42" id="kDJ-wV-2xh"/>
@@ -48,27 +48,38 @@
                                 <color key="textColor" red="0.99599701166152954" green="0.99599379301071167" blue="0.99202793836593628" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSP-WJ-QQG">
+                                <rect key="frame" x="16" y="85" width="63" height="30"/>
+                                <color key="backgroundColor" red="0.99599701166152954" green="0.99599379301071167" blue="0.99202793836593628" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4zl-u1-msj"/>
+                                    <constraint firstAttribute="width" constant="63" id="cSo-lW-yzd"/>
+                                </constraints>
+                                <state key="normal" title="Очист.">
+                                    <color key="titleColor" red="0.16862745100000001" green="0.33333333329999998" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onDeleteClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pl7-Ck-cEh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qEb-Pq-BVh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="51" id="AT3-WM-axj"/>
+                            <constraint firstItem="qEb-Pq-BVh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="59" id="AT3-WM-axj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FTt-aI-a5P" secondAttribute="trailing" constant="-20" id="EDz-RQ-Syu"/>
                             <constraint firstItem="CEe-pl-BM8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="MGe-kI-Kib"/>
                             <constraint firstItem="CEe-pl-BM8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Qr6-p5-zcj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qEb-Pq-BVh" secondAttribute="trailing" constant="14" id="S4C-Og-mwI"/>
+                            <constraint firstItem="PSP-WJ-QQG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="21" id="SSN-IG-850"/>
                             <constraint firstItem="FTt-aI-a5P" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TfC-Mc-q9a"/>
+                            <constraint firstItem="CEe-pl-BM8" firstAttribute="leading" secondItem="qEb-Pq-BVh" secondAttribute="trailing" constant="-72" id="ZY0-PV-XEA"/>
                             <constraint firstItem="FTt-aI-a5P" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="epp-LF-toz"/>
+                            <constraint firstItem="CEe-pl-BM8" firstAttribute="leading" secondItem="PSP-WJ-QQG" secondAttribute="trailing" constant="-83" id="gRu-s5-qWj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CEe-pl-BM8" secondAttribute="trailing" constant="-20" id="ksp-MM-g03"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FTt-aI-a5P" secondAttribute="bottom" id="mAs-ff-v1s"/>
                             <constraint firstItem="FTt-aI-a5P" firstAttribute="top" secondItem="CEe-pl-BM8" secondAttribute="bottom" constant="-1" id="qMr-sg-hfl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Время поесть" id="Zee-4G-jaD">
-                        <barButtonItem key="leftBarButtonItem" title="Очист." id="wtZ-63-qRq">
-                            <connections>
-                                <action selector="onDeleteClick:" destination="BYZ-38-t0r" id="QVH-sX-bC0"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="[Имя]" id="Zee-4G-jaD">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="mTa-P7-T4a">
                             <connections>
                                 <action selector="onAddClick:" destination="BYZ-38-t0r" id="Fbl-AT-R0x"/>
@@ -77,6 +88,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="countTF" destination="qEb-Pq-BVh" id="pDZ-AY-asL"/>
+                        <outlet property="deleteBttn" destination="PSP-WJ-QQG" id="tRO-Ku-niu"/>
                         <outlet property="tableView" destination="FTt-aI-a5P" id="oRX-4j-Xe9"/>
                     </connections>
                 </viewController>

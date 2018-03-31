@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var countTF: UILabel!
+    @IBOutlet weak var deleteBttn: UIButton!
     
     var context:NSManagedObjectContext! // заряжается в классе AppDelegate
 
@@ -22,7 +23,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     lazy var dateFormatter: DateFormatter = {
         let dateFormater = DateFormatter()
-        dateFormater.dateFormat = "MM.dd.yy - HH:mm:ss"
+        dateFormater.dateFormat = "MM.dd.yy - HH:mm:ss:SSS"
         return dateFormater
     }()
     
@@ -31,6 +32,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setButtonStyle(button: deleteBttn)
+        title = personName
         
         // если не указывать ячейку непосредственно в сторибоарде, то ее нужно указать кодом:
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
@@ -85,10 +89,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let mealsCount = person.meals{
             countTF.text = String(mealsCount.count)
+            
+            deleteBttn.isHidden = (mealsCount.count == 0) ? true : false
             return mealsCount.count
         }
-        countTF.text = String(0)
-        return 1
+        return 1 // в принципе, сюда никогда не зайдет
     }
         
     
@@ -135,7 +140,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     // нажали на "Очист."
-    @IBAction func onDeleteClick(_ sender: UIBarButtonItem) {
+    @IBAction func onDeleteClick(_ sender: UIButton) {
         
         // очистка всего контекста
         let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
@@ -196,6 +201,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 
 
+    
+    //MARK: - задает стиль для кнопок
+    func setButtonStyle(button: UIButton, radius:CGFloat = 0){
+        
+        button.layer.cornerRadius = (radius == 0) ? (button.bounds.height / 2) : radius
+        button.layer.shadowOffset = CGSize(width: 2, height: 3)
+        button.layer.shadowRadius = 4
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.6
+    }
 
 
 
