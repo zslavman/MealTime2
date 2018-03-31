@@ -19,6 +19,8 @@ class MainScreen: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        tableView.tableHeaderView?.backgroundColor = .clear
 
         // Получение данных из Core Data
         let fetch_Request:NSFetchRequest<Person> = Person.fetchRequest()
@@ -40,6 +42,12 @@ class MainScreen: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Пожиратели пищи:"
     }
+    // задаем цвет фона заглавья таблицы
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+         (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = #colorLiteral(red: 0.790307343, green: 0.8363640904, blue: 1, alpha: 1)
+    }
+
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,6 +59,19 @@ class MainScreen: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fCell")
         let eaterToShow = eaters[indexPath.row]
         cell?.textLabel?.text = eaterToShow.name
+        
+        //задаем цвет выделения ячейки при клике на нее
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        cell?.selectedBackgroundView = backgroundView
+        
+        tableView.separatorColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        
+        cell?.tintColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+
+        
+        // делаем ячейки прозрачного цвета
+        cell?.backgroundColor = UIColor.clear
         return cell!
     }
     
@@ -122,6 +143,11 @@ class MainScreen: UITableViewController {
     
     
     
+    // клик по ячейке
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // убираем выделение ячейки
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     
     
