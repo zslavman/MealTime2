@@ -16,8 +16,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var countTF: UILabel!
     
     var context:NSManagedObjectContext! // заряжается в классе AppDelegate
-    
-    var instances: [Happydate] = [] // массив экземпляров Happydate из Core Data
+
+    var person:Person! // персона, к которой будут применены операции с приемом пищи, по сути, это и есть массив, в котором будут храниться все приемы пищи (экземпляры Meals)
+    var personName = "Max"
     
     lazy var dateFormatter: DateFormatter = {
         let dateFormater = DateFormatter()
@@ -31,7 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // если не указывать ячейку на сторибоарде, то ее нужно указать так:
+        // если не указывать ячейку непосредственно в сторибоарде, то ее нужно указать кодом:
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
         
         fetchData()
@@ -43,20 +44,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // Получение данных из Core Data
     func fetchData(){
-        let fetch_Raquest: NSFetchRequest<Happydate> = Happydate.fetchRequest()
-        
-        // создадим дискриптор, который выведет отстортированные данные по полю fixationTime, по убыванию
-        let sortDescriptor = NSSortDescriptor(key: "fixationTime", ascending: false)
-        fetch_Raquest.sortDescriptors = [sortDescriptor]
+
+        // проверяем наличие значений(имен) Person в CoreData, если нету - создаем
+        let fetch_Request:NSFetchRequest<Person> = Person.fetchRequest()
+        fetch_Request.predicate = NSPredicate(format: "name == %@", personName)
         
         do {
-            instances = try context.fetch(fetch_Raquest)
-            // instances.sort(by: {$0.fixationTime < $1.fixationTime})
-            // instances.sortInPlace({ $0.fixationTime($1) == ComparisonResult.OrderedAscending })
-            tableView.reloadData()
-            countTF.text = String(instances.count)
+            let results = try context.fetch(fetch_Request)
+            if results.isEmpty {
+                person = Person(context: context)// создаем экземляр класса Person и помещаем его в context
+                person.name = personName
+                try context.save()
+            }
+            else {
+                person = results.first // здесь всегда будет единственное значение, т.к. имя человека должно быть уникальное
+                let sortDescriptor = NSSortDescriptor(key: "date_eating", ascending: false)
+                person.meals?.sortedArray(using: [sortDescriptor])
+            }
         }
-        catch { print("Не удалось получить данные ") }
+        catch {
+            print(error.localizedDescription)
+        }
         
     }
     
@@ -74,15 +82,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return instances.count
+        
+        if let mealsCount = person.meals{
+            countTF.text = String(mealsCount.count)
+            return mealsCount.count
+        }
+        countTF.text = String(0)
+        return 1
     }
+        
+    
+    
+    
     
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")
-        let dateToPrint:Happydate = instances[indexPath.row]
-        cell?.textLabel!.text = dateFormatter.string(from: dateToPrint.fixationTime as! Date)
+        // берем конкретный прием пищи и помещаем его в Meal (если таковой существует)
+        guard let meal = person.meals?[indexPath.row] as? Meal, let mealDate = meal.date_eating as? Date
+            else {
+                return cell! // отображаем пустую ячейку
+        }
+                
+        cell?.textLabel!.text = dateFormatter.string(from: mealDate)
         return cell!
     }
     
@@ -90,53 +113,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // нажали на "+"
     @IBAction func onAddClick(_ sender: UIBarButtonItem) {
-        let date = Date() // запоминаем дату во время нажатия на "+"
-        let inst: Happydate = Happydate(context: context)
-        inst.fixationTime = date as NSDate
-        instances.insert(inst, at: 0)
         
-        countTF.text = String(instances.count)
+        // создаем новый экземпляр приема пищи и записываем в него текущую дату
+        let meal = Meal(context: context)
+        meal.date_eating = NSDate() // запоминаем дату во время нажатия на "+" в экземпляр
+        
+        let meals = person.meals?.mutableCopy() as? NSMutableOrderedSet // по умолчанию наш meals имеет тип NSOrderedSet с уже имеющимися значениями, и для его изменения нужно чтоб он был MutableOrderedSet
+        meals?.insert(meal, at: 0) // записываем наш meal в новый meals (в начало коллекции)
+        person.meals = meals // переопределяем имеющийся сэт новым сэтом, который только что создали скопировав наш старый сэт, добавив в него еще одно значение
+
         do {
             try context.save()
-            tableView.reloadData()
         }
         catch { print("Не удалось сохранить данные") }
+        
+        tableView.reloadData()
     }
+    
+    
     
     
     
     // нажали на "Очист."
     @IBAction func onDeleteClick(_ sender: UIBarButtonItem) {
         
-        //        медленный способ
-        //        let fetchRequest = NSFetchRequest<Happydate>(entityName: "Happydate")
-        //        do {
-        //            let items = try context.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>) as! [NSManagedObject]
-        //
-        //            for item in items {
-        //                context.delete(item)
-        //            }
-        //            try context.save()
-        //            tableView.reloadData()
-        //        }
-        //        catch { print("Не удалось сохранить данные") }
-        
-        
-        // быстрый способ - очистка всего контекста
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Happydate")
+        // очистка всего контекста
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
         do {
             try context.execute(deleteRequest)
             try context.save()
             
-            instances.removeAll()
-            countTF.text = String(instances.count)
-            
+            person = nil
+            person = Person(context: context)// создаем экземляр класса Person и помещаем его в context
+            person.name = personName
+        
             tableView.reloadData()
         }
         catch { print("Не удалось сохранить данные") }
     }
         
+    
     
     
     
@@ -144,8 +161,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // убираем выделение ячейки
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
+        
 
     
     
@@ -155,20 +172,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // добавляем фунуции к ячейке при свайпе влево
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
+        // получаем экземпляр, который хотим удалить
+        let objectToDelete = person.meals?[indexPath.row] as? Meal
+
         // УДАЛЕНИЕ ячейки
         let deleteAction = UITableViewRowAction(style: .default, title: "Удалить") {
             (action, IndexPath) in
             
             // удаление с БД
-            let objectToDelete = self.instances[indexPath.row]
-            self.context.delete(objectToDelete)
-
-            self.instances.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.countTF.text = String(self.instances.count)
+            self.context.delete(objectToDelete!)
             
             do {
                 try self.context.save()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
             }
             catch{
                 print("После удаления не удалось сохранить т.к. \(error.localizedDescription)")
