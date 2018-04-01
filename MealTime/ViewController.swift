@@ -35,6 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         setButtonStyle(button: deleteBttn)
         title = personName
+        tableView.separatorColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         // если не указывать ячейку непосредственно в сторибоарде, то ее нужно указать кодом:
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
@@ -76,9 +77,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Время когда \(personName) ел вкусняшки:"
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "Время когда \(personName) ел вкусняшки:"
+//    }
     
     
     
@@ -91,6 +92,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             countTF.text = String(mealsCount.count)
             
             deleteBttn.isHidden = (mealsCount.count == 0) ? true : false
+            countTF.isHidden = (mealsCount.count == 0) ? true : false
             return mealsCount.count
         }
         return 1 // в принципе, сюда никогда не зайдет
@@ -103,16 +105,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")
         // берем конкретный прием пищи и помещаем его в Meal (если таковой существует)
         guard let meal = person.meals?[indexPath.row] as? Meal, let mealDate = meal.date_eating as? Date
             else {
                 return cell! // отображаем пустую ячейку
         }
+        
+        // делаем ячейки прозрачного цвета
+        cell?.backgroundColor = UIColor.clear
                 
         cell?.textLabel!.text = dateFormatter.string(from: mealDate)
         return cell!
     }
+    
+    
     
     
     

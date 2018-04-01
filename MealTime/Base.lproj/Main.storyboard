@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Ты любишь поесть? 😳-->
+        <!--Время приема-->
         <scene sceneID="15s-oX-dBF">
             <objects>
                 <tableViewController id="pW4-dg-nzF" customClass="MainScreen" customModule="MealTime2" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,6 +36,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="tintColor" red="0.92549020049999997" green="0.23529411850000001" blue="0.1019607857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="concreteEater" id="Yog-cn-1WM"/>
                                 </connections>
@@ -51,7 +52,7 @@
                             <outlet property="delegate" destination="pW4-dg-nzF" id="icO-0q-BGj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Ты любишь поесть? 😳" id="pyT-Ib-ouL">
+                    <navigationItem key="navigationItem" title="Время приема" id="pyT-Ib-ouL">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hYk-Pa-B4B">
                             <connections>
                                 <action selector="onPlusClick:" destination="pW4-dg-nzF" id="WS7-YM-PHc"/>
@@ -84,10 +85,18 @@
                                     <constraint firstAttribute="width" secondItem="CEe-pl-BM8" secondAttribute="height" multiplier="600:223" id="ez6-fD-nuU"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FTt-aI-a5P">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FTt-aI-a5P" customClass="GradientView" customModule="MealTime2" customModuleProvider="target">
                                 <rect key="frame" x="-4" y="185" width="328" height="383"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <sections/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" red="0.2627450980392157" green="0.53333333333333333" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" red="0.99599701166152954" green="0.99599379301071167" blue="0.99202793836593628" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="rRJ-F2-0SB"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="5Eo-t6-LAH"/>

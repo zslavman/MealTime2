@@ -15,12 +15,13 @@ class MainScreen: UITableViewController {
     var eaterName:String = ""
     var eaters: [Person] = []
     var count:Int = 0
+    let favColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tableView.tableHeaderView?.backgroundColor = .clear
+        tableView.separatorColor = favColor
 
         // Получение данных из Core Data
         let fetch_Request:NSFetchRequest<Person> = Person.fetchRequest()
@@ -40,7 +41,7 @@ class MainScreen: UITableViewController {
     
     // заглавье для таблицы
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Пожиратели пищи:"
+        return "Пациенты:"
     }
     // задаем цвет фона заглавья таблицы
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -62,12 +63,12 @@ class MainScreen: UITableViewController {
         
         //задаем цвет выделения ячейки при клике на нее
         let backgroundView = UIView()
-        backgroundView.backgroundColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        backgroundView.backgroundColor = favColor
         cell?.selectedBackgroundView = backgroundView
         
-        tableView.separatorColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        tableView.separatorColor = favColor
         
-        cell?.tintColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        cell?.tintColor = favColor
 
         
         // делаем ячейки прозрачного цвета
@@ -146,7 +147,9 @@ class MainScreen: UITableViewController {
     // клик по ячейке
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // убираем выделение ячейки
-        tableView.deselectRow(at: indexPath, animated: true)
+//        tableView.deselectRow(at: indexPath, animated: true)
+        let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        selectedCell.contentView.backgroundColor = #colorLiteral(red: 0.721867955, green: 0.7081359182, blue: 0.9016706576, alpha: 1)
     }
     
     
