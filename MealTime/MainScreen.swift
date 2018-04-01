@@ -14,7 +14,6 @@ class MainScreen: UITableViewController {
     lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var eaterName:String = ""
     var eaters: [Person] = []
-    var count:Int = 0
     let favColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
     
     
@@ -123,11 +122,15 @@ class MainScreen: UITableViewController {
     
     func addPatient(_ patName:String){
         // проверить есть ли экземпляры класса Person c именем patName
-        return
+        for each_eater in eaters{
+            if each_eater.name == patName {
+                return
+            }
+        }
+        
         let instance: Person = Person(context: context)
         instance.creationDate = NSDate() // запоминаем дату во время нажатия на "+" в экземпляр
-        instance.name = "Вася\(count)"
-        count += 1
+        instance.name = patName
         eaters.append(instance)
         
         do {
