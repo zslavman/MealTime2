@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Время приема-->
+        <!--Время приема лекарств-->
         <scene sceneID="15s-oX-dBF">
             <objects>
                 <tableViewController id="pW4-dg-nzF" customClass="MainScreen" customModule="MealTime2" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,23 +20,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="fCell" textLabel="2dH-ei-mFq" style="IBUITableViewCellStyleDefault" id="Aab-sL-CgA">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fCell" id="Aab-sL-CgA">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aab-sL-CgA" id="Rr0-bq-i9k">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2dH-ei-mFq">
-                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Семен Маркович" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="oQf-5a-DiR">
+                                            <rect key="frame" x="18" y="4" width="222" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="QSj-tE-RFD"/>
+                                                <constraint firstAttribute="height" constant="35" id="iUS-Hd-jsF"/>
+                                                <constraint firstAttribute="width" secondItem="oQf-5a-DiR" secondAttribute="height" multiplier="222:35" id="sBY-y3-WOb"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.60000002384185791" translatesAutoresizingMaskIntoConstraints="NO" id="g4W-GN-tIh">
+                                            <rect key="frame" x="253" y="4" width="33" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="35" id="5bO-QE-OIb"/>
+                                                <constraint firstAttribute="width" constant="33" id="9MD-oL-JA1"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="SRu-hM-4D8"/>
+                                                <constraint firstAttribute="height" constant="35" id="gnc-4O-EWZ"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="33" id="vT8-pQ-YJE"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33" id="wvk-hQ-pPT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="❯" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="8p2-C1-7rJ">
+                                            <rect key="frame" x="287" y="3" width="25" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="1hG-8W-AxN"/>
+                                                <constraint firstAttribute="width" constant="25" id="SD4-wh-4SZ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="oQf-5a-DiR" firstAttribute="centerY" secondItem="Rr0-bq-i9k" secondAttribute="centerY" id="2nF-ld-zRJ"/>
+                                        <constraint firstItem="oQf-5a-DiR" firstAttribute="leading" secondItem="Rr0-bq-i9k" secondAttribute="leadingMargin" constant="10" id="NGO-3n-eqU"/>
+                                        <constraint firstItem="g4W-GN-tIh" firstAttribute="centerY" secondItem="Rr0-bq-i9k" secondAttribute="centerY" id="WZQ-oA-yo4"/>
+                                        <constraint firstItem="8p2-C1-7rJ" firstAttribute="leading" secondItem="g4W-GN-tIh" secondAttribute="trailing" constant="1" id="gHF-2N-FbE"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="8p2-C1-7rJ" secondAttribute="trailing" id="qKD-nO-lCq"/>
+                                        <constraint firstItem="oQf-5a-DiR" firstAttribute="top" secondItem="Rr0-bq-i9k" secondAttribute="topMargin" constant="-4" id="sXb-Zs-gMW"/>
+                                        <constraint firstItem="8p2-C1-7rJ" firstAttribute="centerY" secondItem="Rr0-bq-i9k" secondAttribute="centerY" constant="-1" id="xuw-iy-dzI"/>
+                                    </constraints>
                                 </tableViewCellContentView>
-                                <color key="tintColor" red="0.92549020049999997" green="0.23529411850000001" blue="0.1019607857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="concreteEater" id="Yog-cn-1WM"/>
                                 </connections>
@@ -52,7 +88,7 @@
                             <outlet property="delegate" destination="pW4-dg-nzF" id="icO-0q-BGj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Время приема" id="pyT-Ib-ouL">
+                    <navigationItem key="navigationItem" title="Время приема лекарств" id="pyT-Ib-ouL">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hYk-Pa-B4B">
                             <connections>
                                 <action selector="onPlusClick:" destination="pW4-dg-nzF" id="WS7-YM-PHc"/>

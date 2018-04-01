@@ -221,6 +221,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
 
+    
+    // сработает по возвращению на главную страницу
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if isMovingFromParentViewController {
+            if let viewControllers = self.navigationController?.viewControllers {
+                if (viewControllers.count >= 1) {
+                    let previousViewController = viewControllers[viewControllers.count - 1] as! MainScreen
+                    // вызываем метод из предыдущего вьюконтроллера
+                    previousViewController.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
 
 }
 

@@ -59,20 +59,27 @@ class MainScreen: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fCell")
         let eaterToShow = eaters[indexPath.row]
-        cell?.textLabel?.text = eaterToShow.name
+        
+        //обращаемся к текстовым лейблам кастомной ячейки чере tag'и
+        let label_1 = cell?.viewWithTag(1) as! UILabel
+        let label_2 = cell?.viewWithTag(2) as! UILabel
+       
+        label_1.text = eaterToShow.name           // Имя Фамилия
+        
+        // кол-во записей
+        let notesCount = eaterToShow.meals!.count
+        label_2.text = (notesCount == 0) ? "" : String(notesCount)
         
         //задаем цвет выделения ячейки при клике на нее
         let backgroundView = UIView()
-        backgroundView.backgroundColor = favColor
+        backgroundView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         cell?.selectedBackgroundView = backgroundView
         
         tableView.separatorColor = favColor
-        
-        cell?.tintColor = favColor
 
-        
         // делаем ячейки прозрачного цвета
         cell?.backgroundColor = UIColor.clear
+        
         return cell!
     }
     
@@ -147,14 +154,10 @@ class MainScreen: UITableViewController {
     // клик по ячейке
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // убираем выделение ячейки
-//        tableView.deselectRow(at: indexPath, animated: true)
-        let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
-        selectedCell.contentView.backgroundColor = #colorLiteral(red: 0.721867955, green: 0.7081359182, blue: 0.9016706576, alpha: 1)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
-    
-    
+
 
 
 }
