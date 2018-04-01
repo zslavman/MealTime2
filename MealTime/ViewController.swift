@@ -150,17 +150,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // нажали на "Очист."
     @IBAction func onDeleteClick(_ sender: UIButton) {
         
-        // очистка всего контекста
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
-        do {
-            try context.execute(deleteRequest)
-            try context.save()
-            
-            person = nil
-            person = Person(context: context)// создаем экземляр класса Person и помещаем его в context
-            person.name = personName
+        // очистка текущего контекста
+        person.meals = nil
         
+        do {
+            try context.save()
             tableView.reloadData()
         }
         catch { print("Не удалось сохранить данные") }

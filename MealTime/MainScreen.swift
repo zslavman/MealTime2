@@ -66,13 +66,21 @@ class MainScreen: UITableViewController {
        
         label_1.text = eaterToShow.name           // Имя Фамилия
         
-        // кол-во записей
-        let notesCount = eaterToShow.meals!.count
-        label_2.text = (notesCount == 0) ? "" : String(notesCount)
+        if eaterToShow.meals != nil{
+            if eaterToShow.meals!.count == 0{
+                label_2.text = ""
+            }
+            else{
+                label_2.text = String(eaterToShow.meals!.count)
+            }
+        }
+        else{
+             label_2.text = ""
+        }
         
         //задаем цвет выделения ячейки при клике на нее
         let backgroundView = UIView()
-        backgroundView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        backgroundView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.5)
         cell?.selectedBackgroundView = backgroundView
         
         tableView.separatorColor = favColor
@@ -89,6 +97,33 @@ class MainScreen: UITableViewController {
     // кликнули на "+"
     @IBAction func onPlusClick(_ sender: UIBarButtonItem) {
         
+        
+        let alertController = UIAlertController(title: "Новый пациент", message: "Введите имя и фамилию пациента", preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "OK", style: .default) {
+            (action) in
+            let textField = alertController.textFields?[0]
+            self.addPatient(textField!.text!)
+        }
+        
+        let cancel = UIAlertAction(title: "Отмена", style: .default, handler: nil)
+        
+        alertController.addTextField {
+            textField in
+//            textField.keyboardType = .alphabet // определяем тип клавиатуры который нам нужен
+        }
+        
+        alertController.addAction(ok)
+        alertController.addAction(cancel)
+        present(alertController, animated: true, completion: nil)
+    }
+   
+    
+    
+    
+    func addPatient(_ patName:String){
+        // проверить есть ли экземпляры класса Person c именем patName
+        return
         let instance: Person = Person(context: context)
         instance.creationDate = NSDate() // запоминаем дату во время нажатия на "+" в экземпляр
         instance.name = "Вася\(count)"
@@ -101,8 +136,6 @@ class MainScreen: UITableViewController {
         }
         catch { print("Не удалось сохранить данные") }
     }
-   
-    
     
     
     
@@ -119,6 +152,8 @@ class MainScreen: UITableViewController {
             }
         }
     }
+    
+    
     
     
     
@@ -146,7 +181,21 @@ class MainScreen: UITableViewController {
                 print("После удаления не удалось сохранить т.к. \(error.localizedDescription)")
             }
         }
-        return [deleteAction]
+        
+        // РЕДАКТИР. ячейки
+        let editAction = UITableViewRowAction(style: .default, title: "Редакт.") {
+            (action, IndexPath) in
+        
+            let ac = UIAlertController(title: "Редактирование", message: "Доступно в будущих обновлениях", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default)
+            ac.addAction(ok)
+            self.present(ac, animated: true, completion: nil)
+        }
+        
+        editAction.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 0.8554148707)
+        deleteAction.backgroundColor = #colorLiteral(red: 0.9610336423, green: 0.2900479734, blue: 0.2988267541, alpha: 0.8554148707)
+        
+        return [deleteAction, editAction]
     }
     
     
