@@ -129,7 +129,7 @@ class MainScreen: UITableViewController {
         }
         
         let instance: Person = Person(context: context)
-        instance.creationDate = NSDate() // запоминаем дату во время нажатия на "+" в экземпляр
+		instance.creationDate = Date() // запоминаем дату во время нажатия на "+" в экземпляр
         instance.name = patName
         eaters.append(instance)
         

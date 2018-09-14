@@ -108,7 +108,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")
         // берем конкретный прием пищи и помещаем его в Meal (если таковой существует)
-        guard let meal = person.meals?[indexPath.row] as? Meal, let mealDate = meal.date_eating as? Date
+		guard let meal = person.meals?[indexPath.row] as? Meal, let mealDate = meal.date_eating as Date?
             else {
                 return cell! // отображаем пустую ячейку
         }
@@ -129,7 +129,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // создаем новый экземпляр приема пищи и записываем в него текущую дату
         let meal = Meal(context: context)
-        meal.date_eating = NSDate() // запоминаем дату во время нажатия на "+" в экземпляр
+		meal.date_eating = NSDate() as Date // запоминаем дату во время нажатия на "+" в экземпляр
         
         let meals = person.meals?.mutableCopy() as? NSMutableOrderedSet // по умолчанию наш meals имеет тип NSOrderedSet с уже имеющимися значениями, и для его изменения нужно чтоб он был MutableOrderedSet
         meals?.insert(meal, at: 0) // записываем наш meal в новый meals (в начало коллекции)
